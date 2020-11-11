@@ -1,14 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
-
-const routes = [
+/* Layout */
+import Layout from '@/layout'
+/**
+ * constantRoutes
+ * a base page that does not have permission requirements
+ * 所有角色可以访问
+ */
+export const constantRoutes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    component: Layout,
+    redirect: '/dashboard', children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
   },
   {
     path: '/about',
@@ -20,8 +32,9 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({
-  routes
+const createRouter = () => new VueRouter({
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
 })
-
+const router = createRouter()
 export default router
