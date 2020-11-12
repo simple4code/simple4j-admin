@@ -1,10 +1,24 @@
 <template>
-  <div>aaaaaaaaaa</div>
+  <div class="app-wrapper">
+    aaaaaaaaa
+    <div class="drawer-bg" />
+    aaaaaaaaaa
+    <div class="main-container">
+      <div><app-main /><right-panel> </right-panel></div>
+    </div>
+  </div>
 </template>
 
 <script>
+import RightPanel from '@/components/RightPanel'
+import { AppMain } from './components'
 export default {
   name: 'Layout',
+  components: {
+
+    RightPanel,
+    AppMain
+  },
   data() {
     return {
 
@@ -18,6 +32,16 @@ export default {
   },
   methods: {
 
+  },
+  computed: {
+
+    classObj() {
+      return {
+
+        mobile: 'mobile'
+
+      }
+    }
   }
 }
 </script>
