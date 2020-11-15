@@ -1,13 +1,13 @@
 <template>
-  <div>RightPanel</div>
+  <div></div>
 </template>
 
 <script>
+// import errGif from '@/assets/401_images/401.gif'
 export default {
-  name: 'RightPanel',
+  // components: { errGif },
   data() {
     return {
-
     }
   },
   created() {

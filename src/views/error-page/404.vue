@@ -1,13 +1,11 @@
 <template>
-  <div>RightPanel</div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: 'RightPanel',
   data() {
     return {
-
     }
   },
   created() {
