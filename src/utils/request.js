@@ -14,17 +14,17 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['Authorization'] = getToken()
+      config.headers['Authorization'] = `Bearer ${getToken()}` // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
     }
     return config
   },
   error => {
     // do something with request error
+    Message.error('对不起，出错了')
     console.log(error) // for debug
     return Promise.reject(error)
   }
@@ -44,9 +44,8 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.code !== 10000) {
       Message({
         message: res.message || 'Error',
         type: 'error',
